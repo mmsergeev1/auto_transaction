@@ -7,18 +7,37 @@ class YnabAPI:
     def __init__(self, token):
         self.api_token = token
 
-    def get_user(self):
+    def get_budget_list(self):
         # Configure API key authorization: bearer
         configuration = ynab.Configuration()
-        configuration.api_key['Authorization'] = str(self.api_token)
+        configuration.api_key['Authorization'] = self.api_token
         configuration.api_key_prefix['Authorization'] = 'Bearer'
 
         # create an instance of the API class
-        api_instance = ynab.UserApi(ynab.ApiClient(configuration))
+        api_instance = ynab.BudgetsApi(ynab.ApiClient(configuration))
 
         try:
-            # User info
-            api_response = api_instance.get_user()
+            # List budgets
+            api_response = api_instance.get_budgets()
             return api_response
         except ApiException as e:
-            print("Exception when calling UserApi->get_user: %s\n" % e)
+            print("Exception when calling BudgetsApi->get_budgets: %s\n" % e)
+
+    def get_transaction_list(self, budget_id, since_date):
+        # Configure API key authorization: bearer
+        configuration = ynab.Configuration()
+        configuration.api_key['Authorization'] = self.api_token
+        configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+        # create an instance of the API class
+        api_instance = ynab.TransactionsApi(ynab.ApiClient(configuration))
+        budget_id = budget_id
+        since_date = since_date
+        transaction_type = 'categorized'
+
+        try:
+            # List transactions
+            api_response = api_instance.get_transactions(budget_id, since_date=since_date, type=transaction_type)
+            return api_response
+        except ApiException as e:
+            print("Exception when calling TransactionsApi->get_transactions: %s\n" % e)
