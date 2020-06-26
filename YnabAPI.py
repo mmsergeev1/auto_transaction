@@ -31,9 +31,9 @@ class YnabAPI:
 
         # create an instance of the API class
         api_instance = ynab.TransactionsApi(ynab.ApiClient(configuration))
-        budget_id = budget_id # str | The ID of the Budget.
-        since_date = since_date  # date | Only return transactions on or after this date. (optional)
-        transaction_type = 'categorized'  # str | Only return transactions of a certain type (i.e. 'uncategorized', 'unapproved') (optional)
+        budget_id = budget_id
+        since_date = since_date
+        transaction_type = 'categorized'
 
         try:
             # List transactions
