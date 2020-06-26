@@ -1,5 +1,4 @@
 from __future__ import print_function
-import time
 import ynab
 from ynab.rest import ApiException
 

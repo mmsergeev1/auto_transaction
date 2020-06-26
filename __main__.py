@@ -1,4 +1,3 @@
-import json
 import YnabAPI
 from os import system, name
 
