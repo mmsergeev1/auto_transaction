@@ -3,6 +3,11 @@ import YnabAPI
 from os import system, name
 
 
+config_dict = ConfigReader.get_config()
+token = config_dict['personal_access_token']
+ynab_api = YnabAPI.YnabAPI(token)
+
+
 # define our clear function
 def clear():
     # for windows
@@ -18,6 +23,25 @@ def pause(action):
     input(f"Press Enter to {action}")
 
 
+def choose(choice):
+    result = ''
+    if choice == '1':
+        result = ynab_api.get_budget_list()
+    elif choice == '2':
+        result = 'In development'
+    elif choice == '3':
+        system(exit(0))
+    return result
+
+
+def main_menu():
+    print('1. Get budget ID\'s')
+    print('2. Insert transactions into budget')
+    print('3. Exit')
+    choice = input('> ')
+    return choice
+
+
 def print_info():
     print('© Mikhail Sergeev, 2020, Moscow')
     print('Read README.md before use')
@@ -28,17 +52,11 @@ def main():
     clear()
     print_info()
 
-    pause('start')
+    choice = main_menu()
+    result = choose(choice)
+    print(result)
 
-    config_dict = ConfigReader.get_config()
-    token = config_dict['personal_access_token']
-
-    ynab_api = YnabAPI.YnabAPI(token)
-    # budget_summary_response = ynab_api.get_budget_list()
-
-    since_date = '2020-06-01'
-    budget_id = '87236745-761a-4947-a4ee-b2e588979fb9'
-    print(ynab_api.get_transaction_list(budget_id, since_date))
+    pause('exit')
 
 
 if __name__ == '__main__':
