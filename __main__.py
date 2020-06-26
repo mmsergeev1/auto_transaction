@@ -34,7 +34,11 @@ def main():
     token = config_dict['personal_access_token']
 
     ynab_api = YnabAPI.YnabAPI(token)
-    print(ynab_api.get_user())
+    # budget_summary_response = ynab_api.get_budget_list()
+
+    since_date = '2020-06-01'
+    budget_id = '87236745-761a-4947-a4ee-b2e588979fb9'
+    print(ynab_api.get_transaction_list(budget_id, since_date))
 
 
 if __name__ == '__main__':
