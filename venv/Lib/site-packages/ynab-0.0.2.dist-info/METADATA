@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: ynab
+Version: 0.0.2
+Summary: YNAB API Endpoints
+Home-page: https://github.com/davidhao3300/ynab-python
+Author: OpenAPI Generator community
+Author-email: team@openapitools.org
+License: UNKNOWN
+Keywords: OpenAPI,OpenAPI-Generator,YNAB API Endpoints
+Platform: UNKNOWN
+Requires-Dist: urllib3 (>=1.15)
+Requires-Dist: six (>=1.10)
+Requires-Dist: certifi
+Requires-Dist: python-dateutil
+
+Our API uses a REST based design, leverages the JSON data format, and relies upon HTTPS for transport. We respond with meaningful HTTP response codes and if an error occurs, we include error details in the response body.  API Documentation is at https://api.youneedabudget.com  # noqa: E501
+
+
