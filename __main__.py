@@ -1,3 +1,4 @@
+import ConfigReader
 import YnabAPI
 from os import system, name
 
@@ -13,6 +14,10 @@ def clear():
         _ = system('clear')
 
 
+def pause(action):
+    input(f"Press Enter to {action}")
+
+
 def print_info():
     print('© Mikhail Sergeev, 2020, Moscow')
     print('Read README.md before use')
@@ -23,9 +28,13 @@ def main():
     clear()
     print_info()
 
-    token = str(input("Input personal acess token: "))
-    response_data = YnabAPI.get_user(token)
-    print(response_data)
+    pause('start')
+
+    config_dict = ConfigReader.get_config()
+    token = config_dict['personal_access_token']
+
+    ynab_api = YnabAPI.YnabAPI(token)
+    print(ynab_api.get_user())
 
 
 if __name__ == '__main__':
