@@ -41,3 +41,18 @@ class YnabAPI:
             return api_response
         except ApiException as e:
             print("Exception when calling TransactionsApi->get_transactions: %s\n" % e)
+
+    def get_categories_list(self, budget_id):
+        configuration = ynab.Configuration()
+        configuration.api_key['Authorization'] = self.api_token
+        configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+        # create an instance of the API class
+        api_instance = ynab.CategoriesApi(ynab.ApiClient(configuration))
+
+        try:
+            # List categories
+            api_response = api_instance.get_categories(budget_id)
+            return api_response
+        except ApiException as e:
+            print("Exception when calling CategoriesApi->get_categories: %s\n" % e)

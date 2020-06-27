@@ -1,5 +1,4 @@
 import ConfigReader
-import FileReader
 import YnabAPI
 from os import system, name
 
@@ -24,14 +23,15 @@ def pause(action):
 
 
 def choose(choice):
-    result = ''
     if choice == '1':
         result = ynab_api.get_budget_list()
+        return result
     elif choice == '2':
-        result = 'In development'
+        budget_id = input("Budget_id: ")
+        result = ynab_api.get_categories_list(budget_id)
+        return result
     elif choice == '3':
         system(exit(0))
-    return result
 
 
 def main_menu():
